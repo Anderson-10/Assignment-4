@@ -36,3 +36,24 @@ areas[finance_assistant.id_area] = finance_assistant
 areas[finance_Analyst.id_area] = finance_Analyst
 areas[IT_support.id_area] = IT_support
 areas[IT_devepoler.id_area] = IT_devepoler
+
+
+
+def newEmployee():
+    id = int(len(employees) + 1) 
+    name = input("Write the name of the employee:")          
+    print("Show the current areas")
+    print('id_area','area','position','value_hour','value_overtime')
+    for i in areas:
+             print("{}{}{}{}".formatid_area, areas[i].area, areas[i].position,  areas[i].value_hour, areas[i].value_overtime)
+
+    employees[id] = Employee(id, name )
+
+def showMenu():
+    os.system('cls')
+    MenuSelection = ["Add a new Employee ","Show Current Employees ","Add worked hours to Employe","Show Employe ticket ","Load Employees from data file ","Save Changes ", "Exit Program"]
+
+    i = 0
+    for option in MenuSelection:
+        i = i + 1
+        print ("{}- {}".format(i,option))
