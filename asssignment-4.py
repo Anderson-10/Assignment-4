@@ -21,7 +21,7 @@ class Area:
 
 employees = {}
 areas = {}
-
+hst = 13.0
 
 human_resources_manager = Area(1,'Human Resources','manager',42.0,63.0)
 human_resources_assistant = Area(2,'Human Resources','assistant',18.0,27.0)
@@ -73,12 +73,34 @@ def employeeInfo():
     input("Press enter to continue")
 
 
+def addWorkedHours():
+    print(" Which employee do yo want to add hours?")
+    employeeInfoMenu()
+    id_employee = int(input("Select employee id:"))
+    employee = employees[id_employee]
+    employee.quantity = int(input("Write the quantity of the employee:",))
+    employee.overtime = int(input("Write the overtime of the employee:",))
+    employee.salary = (areas[int(employee.position)].value_hour * float(employee.quantity)) + (areas[int(employee.position)].value_overtime * float(employee.overtime))
+    employees[id_employee] = employee
+
+def showEmployeTicket():
+    print(" Which employee do yo want to show ticket?")
+    employeeInfoMenu()
+    id_employee = int(input("Select employee id to see the total:"))
+    employee = employees[id_employee]
+    hstValue = hst * employee.salary / 100
+    total = employee.salary - hstValue
+    print("{}{}{}{}{}{}{}" .format('name','position','quantity','overtime','salary','hstValue','Total'))
+    print("{}{}{}{}{}{}{}" .format(employee.name,employee.position,employee.quantity,employee.overtime,employee.salary,hstValue,total))
+
+
+
 menuAction = 0
 #variable to check the kind of data 
 isValidOption = True
 while True:
     showMenu()
-    input("Press enter to continue")
+
     if (isValidOption == False):
         print("Please select a valid option")
     
