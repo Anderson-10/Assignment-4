@@ -64,7 +64,7 @@ def newEmployee():
     print("%-30s %-15s %-15s " %('id_area','area','position'))
     for i in areas:
              print("%-30s %-15s %-15s " %(str(areas[i].id_area), str(areas[i].area), str(areas[i].position)))
-    position = isInt("Where do you want to add the user ? Please select the ID:",True,False)
+    position = isInt("Select the position where you want to add the user Please select the ID:",True,False)
     employees[id] = Employee(id, name, position )
 
 def isIntOption (message):
@@ -81,7 +81,7 @@ def isIntOption (message):
 
 def showMenu():
     os.system('cls')
-    MenuSelection = ["Add a new Employee ","Show Current Employees ","Add worked hours to Employe","Show Employe ticket ","Load Employees from data file ","Save Changes ", "Exit Program"]
+    MenuSelection = ["Add a New Employee ","Show Company Areas ","Add hours worked for the employee","show payment information","Upload information to the system","Save Changes ", "Exit Program"]
 
     i = 0
     for option in MenuSelection:
@@ -104,19 +104,19 @@ def employeeInfo():
 
 
 def addWorkedHours():
-    print(" Which employee do yo want to add hours?")
+    print(" Please select a user to add the time in hours ")
     employeeInfoMenu()
     id_employee = int(isInt("Select employee id:",False,True))
     employee = employees[id_employee]
-    employee.quantity = int(isInt ("Write the quantity of the employee:",False,False))
-    employee.overtime = int(isInt("Write the overtime of the employee:",False,False))
+    employee.quantity = int(isInt ("Enter the hours worked by the user: ",False,False))
+    employee.overtime = int(isInt("Write the overtime of the employee: ",False,False))
     employee.salary = (areas[int(employee.position)].value_hour * float(employee.quantity)) + (areas[int(employee.position)].value_overtime * float(employee.overtime))
     employees[id_employee] = employee
 
 def showEmployeTicket():
-    print(" Which employee do yo want to show ticket?")
+    print(" Select an user to see the payment information")
     employeeInfoMenu()
-    id_employee = int(isInt("Select employee id to see the total:",False,True))
+    id_employee = int(isInt("Press the number ID to see the total:",False,True))
     employee = employees[id_employee]
     hstValue = hst * employee.salary / 100
     total = employee.salary - hstValue
@@ -124,6 +124,30 @@ def showEmployeTicket():
     print("%-30s %-15s %-15s %-15s %-15s %-15s %-15s" %(employee.name,employee.position,str(employee.quantity),str(employee.overtime),str(employee.salary),str(hstValue),str(total)))
 
 
+def saveDB():
+
+    demoFile = 'C:/Users/dario/Documents/tarea 4/data.txt'
+    myFile = open(demoFile, 'w') 
+    for j in employees:
+        data = employees[j]
+        myFile.write("\n{},{},{},{},{},{}".format(data.id_employee, data.name,data.position, data.quantity,data.overtime, data.salary))
+        myFile.close
+    return
+
+
+def loadDB():
+              
+    demoFile = 'C:/Users/Ander/Documents/Assignment4/data.txt'
+    isFile = os.path.isfile(demoFile)
+    if isFile:
+        myFile = open(demoFile)
+        for line in myFile:
+            data = line.split(",")
+            
+            if (len(data)== 6):
+                employees[int(data[0])] = Employee(int(data[0]), data[1], int(data[2]),int(data[3]),int(data[4]),float(data[5]))
+        myFile.close
+    return
 
 menuAction = 0
 #variable to check the kind of data 
@@ -152,10 +176,10 @@ while True:
         isValidOption = True
         input("Press enter to continue")
     elif ( menuAction == 5):
-       
+        loadDB()       
         isValidOption = True
     elif (menuAction == 6):
-        
+        saveDB()
         isValidOption = True
         input("File has been saved. Press Enter to continue")
     elif(menuAction == 7):
