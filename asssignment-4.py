@@ -59,6 +59,20 @@ def showMenu():
         print ("{}- {}".format(i,option))
 
 
+def employeeInfoMenu():
+    print('id_employee','name','area','position','quantity','overtime','salary')
+    for j in employees:
+        data = employees[j]
+        print("{}{}{}{}{}{}{}" .format(data.id_employee, data.name, areas[int(data.position)].area, areas[int(data.position)].position, data.quantity, data.overtime,data.salary))
+
+def employeeInfo():
+    print('id_employee','name','area','position','quantity','overtime','salary')
+    for j in employees:
+        data = employees[j]
+        print("{}{}{}{}{}{}{}" .format(data.id_employee, data.name,areas[int(data.position)].area, areas[int(data.position)].position, data.quantity ,data.overtime, data.salary))
+    input("Press enter to continue")
+
+
 menuAction = 0
 #variable to check the kind of data 
 isValidOption = True
