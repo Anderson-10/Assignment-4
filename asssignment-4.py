@@ -60,11 +60,11 @@ def isInt (message, isValidateArea, isValidateEmployee):
 def newEmployee():
     id = int(len(employees) + 1) 
     name = input("Write the name of the employee:")          
-    print("Show the current areas")
-    print("%-30s %-15s %-15s %-15s %-15s" %('id_area','area','position','value_hour','value_overtime'))
+    print("Show the company current Areas")
+    print("%-30s %-15s %-15s " %('id_area','area','position'))
     for i in areas:
-             print("%-30s %-15s %-15s %-15s %-15s" %(str(areas[i].id_area), str(areas[i].area), str(areas[i].position),  str(areas[i].value_hour), str(areas[i].value_overtime)))
-    position = isInt("What is the position of the employee (select the id):",True,False)
+             print("%-30s %-15s %-15s " %(str(areas[i].id_area), str(areas[i].area), str(areas[i].position)))
+    position = isInt("Where do you want to add the user ? Please select the ID:",True,False)
     employees[id] = Employee(id, name, position )
 
 def isIntOption (message):
@@ -106,22 +106,22 @@ def employeeInfo():
 def addWorkedHours():
     print(" Which employee do yo want to add hours?")
     employeeInfoMenu()
-    id_employee = int(input("Select employee id:"))
+    id_employee = int(isInt("Select employee id:",False,True))
     employee = employees[id_employee]
-    employee.quantity = int(input("Write the quantity of the employee:",))
-    employee.overtime = int(input("Write the overtime of the employee:",))
+    employee.quantity = int(isInt ("Write the quantity of the employee:",False,False))
+    employee.overtime = int(isInt("Write the overtime of the employee:",False,False))
     employee.salary = (areas[int(employee.position)].value_hour * float(employee.quantity)) + (areas[int(employee.position)].value_overtime * float(employee.overtime))
     employees[id_employee] = employee
 
 def showEmployeTicket():
     print(" Which employee do yo want to show ticket?")
     employeeInfoMenu()
-    id_employee = int(input("Select employee id to see the total:"))
+    id_employee = int(isInt("Select employee id to see the total:",False,True))
     employee = employees[id_employee]
     hstValue = hst * employee.salary / 100
     total = employee.salary - hstValue
-    print("{}{}{}{}{}{}{}" .format('name','position','quantity','overtime','salary','hstValue','Total'))
-    print("{}{}{}{}{}{}{}" .format(employee.name,employee.position,employee.quantity,employee.overtime,employee.salary,hstValue,total))
+    print("%-30s %-15s %-15s %-15s %-15s %-15s %-15s" %('name','position','quantity','overtime','salary','hstValue','Total'))
+    print("%-30s %-15s %-15s %-15s %-15s %-15s %-15s" %(employee.name,employee.position,str(employee.quantity),str(employee.overtime),str(employee.salary),str(hstValue),str(total)))
 
 
 
@@ -140,13 +140,15 @@ while True:
         isValidOption = True
 
     elif ( menuAction == 2):
+        employeeInfo()
        
         isValidOption = True
     elif ( menuAction == 3):
+        addWorkedHours()
         
         isValidOption = True
     elif ( menuAction == 4):
-        
+        showEmployeTicket()
         isValidOption = True
         input("Press enter to continue")
     elif ( menuAction == 5):
