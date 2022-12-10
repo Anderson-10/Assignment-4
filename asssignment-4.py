@@ -49,6 +49,18 @@ def newEmployee():
 
     employees[id] = Employee(id, name )
 
+def isIntOption (message):
+    while True:
+        num = input(message)
+        try:
+
+            numInt = int(num)
+            return numInt
+        
+        except ValueError:
+            showMenu()
+            print("Please select a valid option in the Menu ")
+
 def showMenu():
     os.system('cls')
     MenuSelection = ["Add a new Employee ","Show Current Employees ","Add worked hours to Employe","Show Employe ticket ","Load Employees from data file ","Save Changes ", "Exit Program"]
@@ -103,7 +115,7 @@ while True:
 
     if (isValidOption == False):
         print("Please select a valid option")
-    
+    menuAction = isIntOption("Enter menu selection:")
 
     if ( menuAction == 1):
         newEmployee()
