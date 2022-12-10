@@ -57,3 +57,40 @@ def showMenu():
     for option in MenuSelection:
         i = i + 1
         print ("{}- {}".format(i,option))
+
+
+menuAction = 0
+#variable to check the kind of data 
+isValidOption = True
+while True:
+    showMenu()
+    input("Press enter to continue")
+    if (isValidOption == False):
+        print("Please select a valid option")
+    
+
+    if ( menuAction == 1):
+        newEmployee()
+        isValidOption = True
+
+    elif ( menuAction == 2):
+       
+        isValidOption = True
+    elif ( menuAction == 3):
+        
+        isValidOption = True
+    elif ( menuAction == 4):
+        
+        isValidOption = True
+        input("Press enter to continue")
+    elif ( menuAction == 5):
+       
+        isValidOption = True
+    elif (menuAction == 6):
+        
+        isValidOption = True
+        input("File has been saved. Press Enter to continue")
+    elif(menuAction == 7):
+        break
+    else:
+        isValidOption = False
