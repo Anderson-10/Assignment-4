@@ -43,11 +43,11 @@ def newEmployee():
     id = int(len(employees) + 1) 
     name = input("Write the name of the employee:")          
     print("Show the current areas")
-    print('id_area','area','position','value_hour','value_overtime')
+    print("%-30s %-15s %-15s %-15s %-15s" %('id_area','area','position','value_hour','value_overtime'))
     for i in areas:
-             print("{}{}{}{}".formatid_area, areas[i].area, areas[i].position,  areas[i].value_hour, areas[i].value_overtime)
-
-    employees[id] = Employee(id, name )
+             print("%-30s %-15s %-15s %-15s %-15s" %(str(areas[i].id_area), str(areas[i].area), str(areas[i].position),  str(areas[i].value_hour), str(areas[i].value_overtime)))
+    position = input("What is the position of the employee (select the id):")
+    employees[id] = Employee(id, name, position )
 
 def isIntOption (message):
     while True:
@@ -72,16 +72,16 @@ def showMenu():
 
 
 def employeeInfoMenu():
-    print('id_employee','name','area','position','quantity','overtime','salary')
+    print("%-30s %-15s %-15s %-15s %-15s %-15s %-15s" %('id_employee','name','area','position','quantity','overtime','salary'))
     for j in employees:
         data = employees[j]
-        print("{}{}{}{}{}{}{}" .format(data.id_employee, data.name, areas[int(data.position)].area, areas[int(data.position)].position, data.quantity, data.overtime,data.salary))
+        print("%-30s %-15s %-15s %-15s %-15s %-15s %-15s" %(str(data.id_employee), str(data.name),str(areas[int(data.position)].area), str(areas[int(data.position)].position), str(data.quantity) ,str(data.overtime), str(data.salary)))
 
 def employeeInfo():
-    print('id_employee','name','area','position','quantity','overtime','salary')
+    print("%-30s %-15s %-15s %-15s %-15s %-15s %-15s" %('id_employee','name','area','position','quantity','overtime','salary'))
     for j in employees:
         data = employees[j]
-        print("{}{}{}{}{}{}{}" .format(data.id_employee, data.name,areas[int(data.position)].area, areas[int(data.position)].position, data.quantity ,data.overtime, data.salary))
+        print("%-30s %-15s %-15s %-15s %-15s %-15s %-15s" %(str(data.id_employee), str(data.name),str(areas[int(data.position)].area), str(areas[int(data.position)].position), str(data.quantity) ,str(data.overtime), str(data.salary)))
     input("Press enter to continue")
 
 
